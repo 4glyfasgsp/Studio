@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f3f6fb; margin: 0; }
+    .container { max-width: 400px; margin: 120px auto; padding: 40px; background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);}
+    h1 { text-align: center; color: #3453b2; }
+    .branding {text-align:center; margin-bottom:20px;}
+    input[type="password"] { width: 100%; padding: 10px; margin: 20px 0; border-radius: 5px; border: 1px solid #ddd;}
+    button { width: 100%; background: #3453b2; color: #fff; border: none; padding: 12px; border-radius: 5px; font-size: 1em;}
+    .error { color: #d00; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="branding">
+      <img src="https://raw.githubusercontent.com/4glyfasgsp/Studio/main/logo.png" alt="Studio Logo" style="width:64px;height:64px;">
+      <h1>Studio</h1>
+    </div>
+    <form id="loginForm">
+      <input type="password" id="password" placeholder="Enter password" required>
+      <button type="submit">Access Studio</button>
+      <div id="error" class="error"></div>
+    </form>
+  </div>
+  <script>
+    const PASSWORD = "Studio2025";
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const input = document.getElementById('password').value;
+      if (input === PASSWORD) {
+        window.location.href = "main.html";
+      } else {
+        document.getElementById('error').textContent = "Incorrect password. Try again.";
+      }
+    });
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>
