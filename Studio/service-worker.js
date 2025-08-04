@@ -1,20 +1,20 @@
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open('studio-cache').then(cache => {
-      return cache.addAll([
-        'index.html',
-        'manifest.json',
-        'logo.png'
-      ]);
-    })
-  );
   self.skipWaiting();
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(clients.claim());
 });
 
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
+    caches.open('studio-cache').then(cache => 
+      cache.match(event.request).then(response => 
+        response || fetch(event.request).then(networkResponse => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        })
+      )
+    )
   );
 });
