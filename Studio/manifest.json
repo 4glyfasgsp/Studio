@@ -1,0 +1,1 @@
+{\n  "name": "Studio",\n  "short_name": "Studio",\n  "start_url": "index.html",\n  "display": "standalone",\n  "background_color": "#f3f6fb",\n  "description": "A secure login page for Studio app.",\n  "icons": [\n    {\n      "src": "logo.png",\n      "sizes": "64x64",\n      "type": "image/png"\n    }\n  ],\n  "theme_color": "#3453b2"\n}
